@@ -13,8 +13,10 @@ import { NotImplementedError } from '../extensions/index.js';
  */
 export default function getSeason(date) {
   if (date === 0 || date === undefined) return 'Unable to determine the time of year!'
-  if (!(date instanceof Date)) throw new Error('Invalid date!')
- const month = getMonth() + 1;
+  if (Object.prototype.toString.call(date) !== '[object Date]' || typeof date !== 'object' || Object.keys(date).length > 0 || !(date instanceof Date)) {
+    throw new Error('Invalid date!');
+  }
+ const month = date.getMonth() + 1;
   switch(month) {
     case 12:
     case 1:
