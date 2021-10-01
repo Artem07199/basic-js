@@ -15,11 +15,11 @@ import { NotImplementedError } from '../extensions/index.js';
  */
 export default function createDreamTeam(members) {
   if (!Array.isArray(members)) return false;
-  return members.reduce((result, name) => {
+  return members.reduce((team, name) => {
     if (typeof name === 'string') {
-      return result += name.trim()[0].toUpperCase();
+      return team += name.trim()[0].toUpperCase();
     } else {
-      return result;
+      return team;
     }
   }, '').split('').sort().join('');
 }

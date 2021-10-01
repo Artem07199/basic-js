@@ -19,10 +19,10 @@ const HALF_LIFE_PERIOD = 5730;
  */
 export default function dateSample(sampleActivity) {
   const activ = parseFloat(sampleActivity)
+  const per = 0.693 / HALF_LIFE_PERIOD;
+  const mod = Math.log(MODERN_ACTIVITY / activ);
+  const result = Math.ceil(mod / per);
   if (typeof sampleActivity !== 'string' || activ <= 0 || !isFinite(activ) || activ >= MODERN_ACTIVITY) 
   return false;
-  const per = 0.693 / HALF_LIFE_PERIOD;
-  const k = Math.log(MODERN_ACTIVITY / activ);
-  const result = Math.ceil(k / per);
   return result;
 }
